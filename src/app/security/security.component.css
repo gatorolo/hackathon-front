@@ -1,0 +1,434 @@
+.cosmos-viewport {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: #020617;
+}
+
+.galaxy-bg {
+  position: absolute;
+  inset: -5%; 
+  background-image: url('/assets/img/galaxy-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  filter: brightness(0.4);
+  animation: deep-space-breath 60s linear infinite;
+  will-change: transform;
+}
+
+@keyframes deep-space-breath {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.10) rotate(7deg); 
+  }
+  50% {
+    transform: scale(1.15) rotate(0deg); 
+  }
+  75% {
+    transform: scale(1.10) rotate(-7deg); 
+  }
+  100% {
+    transform: scale(1) rotate(0deg); 
+  }
+}
+
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.3); }
+}
+
+
+.ui-wrapper {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 40px;
+}
+
+
+.nexus-header {
+  position: absolute;
+  top: 5%;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+
+.main-title {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: 15px;
+  text-transform: uppercase;
+  font-style: italic;
+  margin: 0;
+  text-shadow: 0 0 25px rgba(34, 211, 238, 0.9);
+}
+
+.tagline {
+  display: block;
+  font-size: 1rem;
+  letter-spacing: 10px;
+  color: #4682B4;
+  margin-top: 8px;
+  opacity: 0.9;
+  font-weight: 500;
+    text-shadow: 0 0 20px #f0f0f0, 0 0 25px #dfa8e7;
+}
+
+.glow-line {
+  height: 2px;
+  width: 300px;
+  background: linear-gradient(90deg, transparent, #d946ef, #06b6d4, transparent);
+  margin: 15px auto;
+}
+
+.ui-container {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glass-card {
+  background: transparent !important; 
+  backdrop-filter: blur(2px);
+  margin-top: 15%;
+  border-radius: 35px;
+  position: relative;
+  padding: 2.5rem;
+  animation: entrance 2s ease-out forwards;
+}
+
+.login-box {
+  width: 340px; 
+}
+
+.glass-card, .status-box {
+
+  background: transparent !important;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 35px;
+  border: 1.5px solid transparent;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), 
+                    linear-gradient(135deg, #d946ef, #06b6d4, #d946ef);
+  animation: border-fade 40s ease-in-out infinite;
+  
+}
+
+.status-box {
+  animation-delay: 3s !important; 
+}
+
+@keyframes border-fade {
+  0%, 100% { 
+    opacity: 1; 
+    box-shadow: 0 0 30px rgba(34, 211, 238, 0.4);
+    filter: brightness(1.2); 
+  }
+  50% { 
+    opacity: 0.2; 
+    box-shadow: 0 0 0px rgba(34, 211, 238, 0);
+    filter: brightness(0.8); 
+  }
+}
+
+@keyframes border-fade {
+  0%, 100% { 
+    opacity: 1; 
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.4); 
+  }
+  50% { 
+    opacity: 0.3; 
+    box-shadow: 0 0 5px rgba(6, 182, 212, 0.1); 
+  }
+}
+
+@keyframes entrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.check-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(34, 211, 238, 0.1);
+  border: 1px solid rgba(34, 211, 238, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.2);
+}
+
+.status-box {
+  width: 21%;
+  height: 30%;
+  flex-direction: column;
+  align-items: center;
+  animation: 
+    entrance 3s ease-out forwards, 
+    border-fade 15s ease-in-out 4s infinite; 
+  opacity: 0;
+}
+
+.status-text {
+  color:antiquewhite;
+}
+
+.status-title {
+  color: #f3ebeb;
+}
+
+.animate-border-pulse {
+  border: 1.5px solid transparent;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), 
+                    linear-gradient(135deg, #d946ef, #06b6d4, #d946ef);
+  animation: border-fade 10s ease-in-out infinite;
+}
+
+@keyframes border-fade {
+  0%, 100% { opacity: 1; box-shadow: 0 0 30px rgba(6, 182, 212, 0.3); }
+  50% { opacity: 0.4; box-shadow: 0 0 10px rgba(6, 182, 212, 0.1); }
+}
+
+@keyframes entrance {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes border-fade {
+  0%, 100% { 
+    opacity: 1; 
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.4); 
+  }
+  50% { 
+    opacity: 0.2; 
+    box-shadow: 0 0 5px rgba(6, 182, 212, 0.1); 
+  }
+}
+
+.nexus-input-pure {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85) !important; 
+  border: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #020617;
+  font-weight: 800;
+  transition: all 0.3s ease;
+}
+
+.nexus-input-pure:focus {
+  background: #ffffff !important;
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+}
+
+.nexus-btn-neon {
+  width: 100%;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(5px);
+  border: 1.5px solid transparent;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), 
+                    linear-gradient(90deg, #06b6d4, #d946ef);
+  
+  border-radius: 12px;
+  color: #ffffff;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-top: 25px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.nexus-btn-neon:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 0 25px rgba(217, 70, 239, 0.6);
+  transform: scale(1.02);
+}
+
+
+.nexus-title {
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.5); 
+  font-size: 1.25rem;
+  font-weight: 900;
+  font-style: italic;
+  margin-top: 15px;
+  text-align: center;
+}
+
+
+.field-group label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.loader-container {
+  position: fixed;
+  inset: 0;
+  background: #0f172a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease-out;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(234, 179, 8, 0.1);
+  border-top-color: #eab308; 
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* El pequeño sensor que "intenta abrirse" con un pulso constante */
+.disclaimer-anchor {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 200;
+}
+
+.sensor-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(6, 182, 212, 0.2);
+  border: 2px solid #06b6d4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #06b6d4;
+  font-weight: bold;
+  box-shadow: 0 0 15px #06b6d4;
+}
+
+/* Animación de pulso para indicar que hay algo ahí */
+.pulse-ring {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #06b6d4;
+  border-radius: 50%;
+  animation: sensor-pulse 2s infinite;
+}
+
+@keyframes sensor-pulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.sensor-label {
+  color: #06b6d4;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 5px #06b6d4;
+}
+
+/* El Modal Holográfico */
+.hologram-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  animation: fadeIn 0.3s ease;
+}
+
+.hologram-card {
+  width: 400px;
+  background: rgba(6, 182, 212, 0.05);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  padding: 2px;
+  position: relative;
+  clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+}
+
+.hologram-body {
+  background: rgba(2, 6, 23, 0.8);
+  padding: 20px;
+  color: #a5f3fc;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Efecto de parpadeo de línea superior */
+.hologram-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 2px;
+  background: #06b6d4;
+  box-shadow: 0 0 15px #06b6d4;
+  animation: scanline 4s linear infinite;
+}
+
+@keyframes scanline {
+  0% { top: 0%; }
+  100% { top: 100%; opacity: 0; }
+}

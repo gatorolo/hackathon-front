@@ -1,0 +1,123 @@
+
+<div class="cosmos-viewport">
+  <div class="galaxy-bg"></div>
+
+  <div class="loader-container" [class.fade-out]="!isLoading" *ngIf="isLoading">
+    <div class="spinner mb-4"></div>
+    <p class="text-yellow-500 font-mono text-xs tracking-[0.3em] uppercase animate-pulse">
+      Cargando Sistemas...
+    </p>
+  </div>
+
+  <header class="nexus-header" *ngIf="!isLoading">
+    <h1 class="main-title">
+      INTERESTELAR <span class="tagline">SIMULADOR DE DESERCIÓN</span>
+    </h1>
+    <div class="glow-line"></div>
+  </header>
+      <!------------------------------------------------------------------------>
+     <div class="disclaimer-anchor" (click)="toggleDisclaimer()">
+  <div class="pulse-ring"></div>
+  <span class="sensor-icon">!</span>
+  <label class="sensor-label">SYSTEM_INFO</label>
+</div>
+
+<div class="hologram-overlay" *ngIf="showDisclaimer" (click)="toggleDisclaimer()">
+  <div class="hologram-card" (click)="$event.stopPropagation()">
+    <div class="hologram-header">
+      <div class="glitch-text" data-text="RESTRICTED_DATA">RESTRICTED_DATA</div>
+      <button class="close-btn" (click)="toggleDisclaimer()">×</button>
+    </div>
+    <div class="hologram-body">
+      <p class="typing-effect">
+        > INICIANDO PROTOCOLO DE DESCARGO...<br>
+        > ADVERTENCIA: Los resultados del motor predictivo son estimaciones basadas en ruido estadístico. 
+        No garantizan comportamiento humano futuro. El uso de esta información queda bajo responsabilidad de quien la Utiliza.
+      </p>
+    </div>
+    <div class="hologram-footer">STATUS: ENCRYPTED // 2025</div>
+  </div>
+</div>
+<!---------------------------------------------------------------------------------------->
+  <main class="ui-wrapper" *ngIf="!isLoading">
+    <div class="glass-card login-box animate-border-pulse p-10 shadow-2xl border border-white/10 w-full max-w-md">
+      
+      <div class="header-section mb-8 text-center">
+        <div class="lock-icon flex justify-center mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.5">
+            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </div>
+        <h2 class="text-white font-black tracking-[0.2em] uppercase text-xl">
+          {{ isRegister ? 'Crear Cuenta' : 'Acceso Seguro' }}
+        </h2>
+      </div>
+
+      <form *ngIf="!isRegister" [formGroup]="loginForm" (ngSubmit)="login()" class="space-y-6">
+        <div class="field-group">
+          <label class="text-[14px] font-bold text-gray-600 uppercase tracking-widest ml-1">Usuario<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></label>
+          <input type="text" formControlName="username" class="nexus-input-pure w-full" placeholder="Cual es tu USUARIO?">
+        </div>
+        <div class="field-group">
+          <label class="text-[10px] font-bold text-gray-800 uppercase tracking-widest ml-1">Contraseña<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-key-square"><path d="M12.4 2.7a2.5 2.5 0 0 1 3.4 0l5.5 5.5a2.5 2.5 0 0 1 0 3.4l-3.7 3.7a2.5 2.5 0 0 1-3.4 0L8.7 9.8a2.5 2.5 0 0 1 0-3.4z"/><path d="m14 7 3 3"/><path d="m9.4 10.6-6.814 6.814A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814"/></svg></label>
+          <div class="input-wrapper relative">
+            <input 
+              [type]="showPassword ? 'text' : 'password'" 
+              formControlName="password" 
+              class="nexus-input-pure w-full pr-10" 
+              placeholder="••••••••">
+            <button type="button" (click)="togglePasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-cyan-800 hover:text-red-800 transition-colors">
+              <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg *ngIf="showPassword" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+            </button>
+          </div>
+        </div>
+        <button type="submit" class="nexus-btn-neon w-full">INGRESAR</button>
+      </form>
+
+      <form *ngIf="isRegister" [formGroup]="authForm" (ngSubmit)="onSubmit()" class="space-y-6 relative">
+        <div class="field-group">
+          <label class="text-[15px] font-bold text-gray-600 uppercase tracking-widest ml-1">Nuevo Usuario<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></label>
+          <input type="text" formControlName="username" class="nexus-input-pure w-full">
+        </div>
+        <div class="field-group">
+  <label class="text-[15px] font-bold text-gray-600 uppercase tracking-widest ml-1">
+    Nueva Contraseña
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-key-square"><path d="M12.4 2.7a2.5 2.5 0 0 1 3.4 0l5.5 5.5a2.5 2.5 0 0 1 0 3.4l-3.7 3.7a2.5 2.5 0 0 1-3.4 0L8.7 9.8a2.5 2.5 0 0 1 0-3.4z"/><path d="m14 7 3 3"/><path d="m9.4 10.6-6.814 6.814A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814"/></svg>
+  </label>
+
+  <div class="relative w-full">
+    <input 
+      [type]="showPassword ? 'text' : 'password'" 
+      formControlName="password" 
+      class="nexus-input-pure w-full pr-12"> <button 
+      type="button" 
+      (click)="togglePasswordVisibility()" 
+      class="absolute right-3 top-1/2 -translate-y-1/2 text-cyan-800 hover:text-red-800 transition-colors z-10">
+      
+      <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+      <svg *ngIf="showPassword" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+    </button>
+  </div>
+</div>
+        <button type="submit" class="nexus-btn-neon w-full">REGISTRAR USUARIO</button>
+      </form>
+
+      <div class="mt-8 text-center">
+        <button (click)="isRegister = !isRegister" class="text-gray-400 text-[10px] font-bold uppercase hover:text-cyan-400 transition-colors tracking-widest">
+          {{ isRegister ? '[ Volver al Login ]' : '[ No tengo cuenta - Registrarme ]' }}
+        </button>
+      </div>
+    </div>
+
+    <div class="glass-card status-box hidden md:flex flex-col items-center p-6 mt-4">
+      <div class="check-circle mb-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="3">
+          <path d="M20 6 9 17l-5-5"/>
+        </svg>
+      </div>
+      <h3 class="status-title text-cyan-400 uppercase text-sm font-bold">Sistema Activo</h3>
+      <p class="status-text text-gray-400 text-xs text-center">Motor de predicción v1.0 Esperando el Ingreso...</p>
+    </div>
+  </main>
+</div>
