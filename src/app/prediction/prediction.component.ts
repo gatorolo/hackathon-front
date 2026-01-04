@@ -154,6 +154,37 @@ toggleSistema() {
   });
 }
 
+/*registrarEnHistorial() {
+  if (!this.nombreCapturado) return;
+
+  const nuevoLog = {
+    nombre: this.nombreCapturado,
+    prob: (this.resultado.probability * 100).toFixed(1) + '%',
+    riesgo: this.resultado.risk,
+    colorClass: this.resultado.color || 'gray' // Valor por defecto si falla el color
+  };
+
+  // Usamos el operador spread para asegurar que Angular detecte el cambio en el array
+  this.historialLog = [nuevoLog, ...this.historialLog];
+
+  // Persistencia inmediata
+  localStorage.setItem('nexus_logs', JSON.stringify(this.historialLog));
+}*/
+
+registrarSimulacion() {
+  if (!this.nombreCapturado) return;
+
+  const nuevoLog = {
+    nombre: this.nombreCapturado,
+    prob: (this.resultado.probability * 100).toFixed(1) + '%',
+    riesgo: this.resultado.risk,
+    colorClass: this.resultado.color || 'gray'
+  };
+
+  this.historialLog = [nuevoLog, ...this.historialLog];
+  localStorage.setItem('nexus_logs', JSON.stringify(this.historialLog));
+}
+
 
 private finalizarSimulacion(mensaje: string) {
   setTimeout(() => {
@@ -161,6 +192,7 @@ private finalizarSimulacion(mensaje: string) {
     this.resultadoVisible = true;
     this.mensajeEstado = mensaje;
     this.mensajeTarjeta = 'ANÁLISIS COMPLETADO';
+    this.registrarSimulacion();
   }, 1500); 
 }
 
@@ -168,7 +200,7 @@ private finalizarSimulacion(mensaje: string) {
   showResult = false;
   result: any = null;
 
-verLogs() {
+/*verLogs() {
   if (!this.nombreCapturado) return;
 
   // Creamos un objeto NUEVO con los valores actuales "congelados"
@@ -186,11 +218,27 @@ verLogs() {
   localStorage.setItem('nexus_logs', JSON.stringify(this.historialLog));
 
   this.resultadoVisible = true;
+}*/
+
+borrarLogs() {
+  // 1. Limpiar el historial (esto vacía la tabla)
+  this.historialLog = [];
+  localStorage.removeItem('nexus_logs');
+
+  // 2. Limpiar los campos del formulario (Input)
+  this.cliente = { name: '', tenure: 0, monthly: 0, calls: 0 };
+  
+  // 3. Resetear el estado de la UI
+  this.resultadoVisible = false; // Esto hace que la tarjeta de resultados desaparezca
+  this.hayError = false;
+  this.nombreCapturado = '';
+  this.mensajeEstado = 'SISTEMA ACTIVADO PARA SIMULACIÓN';
+  
+  // 4. Resetear el objeto resultado para que no queden datos viejos
+  this.resultado = { title: '', reco: '', probability: 0, risk: '', color: '' };
+
+  console.log("Núcleo purgado y UI reiniciada");
 }
-  borrarLogs() {
-    this.historialLog = [];
-    localStorage.removeItem('nexus_logs');
-  }
 
  private calcularLogica() {
     let score = 0.15;

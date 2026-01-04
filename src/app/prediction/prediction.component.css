@@ -2,7 +2,7 @@
  cosmos-viewport {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 95vh;
   overflow: hidden;
   background: #020617;
 }
@@ -14,6 +14,7 @@
   background-size: cover;
   background-position: center;
   z-index: 0;
+  overflow-x: hidden
 }
 
 .ui-container {
@@ -22,9 +23,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 95vh;
   padding: 20px;
   perspective: 1000px;
+   overflow-x: hidden
 }
 
 
@@ -68,14 +70,15 @@ color: #020617;
   padding: 35px;
   transition: all 0.6s ease;
   flex-shrink: 0;
+   overflow-x: hidden;
 }
 
 
 .result-card {
-  margin-top: 10%;
+  margin-top: 0;
   width: 350px;
   min-width: 250px;
-  max-height: 300px;
+  max-height: 600px;
   animation: slideFadeIn 0.8s forwards;
 }
 
@@ -95,7 +98,7 @@ color: #020617;
   background: rgba(255, 255, 255, 0.05) !important;
   border: 1px solid rgba(34, 211, 238, 0.2);
   border-radius: 10px;
-  padding: 12px;
+  padding: 10px;
   color: #fff;
   @apply border-gray-300 rounded-md shadow-sm focus:border-indigo-800 focus:ring-indigo-800;
 }
@@ -135,11 +138,6 @@ color: #020617;
 }
 
 
-.starlight-input {
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  transition: all 0.5s ease;
-}
-
 .input-group:nth-child(1).active .starlight-input { transition-delay: 0.3s; border-color: rgba(0, 255, 255, 0.4); }
 .input-group:nth-child(2).active .starlight-input { transition-delay: 0.6s; border-color: rgba(0, 255, 255, 0.4); }
 .input-group:nth-child(3).active .starlight-input { transition-delay: 0.9s; border-color: rgba(0, 255, 255, 0.4); }
@@ -156,7 +154,7 @@ color: #020617;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-top: 15px;
+  margin-top: 10px;
   padding: 8px;
   background: rgba(0, 255, 255, 0.05);
   border-radius: 8px;
@@ -211,24 +209,11 @@ color: #020617;
   to { opacity: 1; transform: translateY(0); }
 }
 
-/*.btn-crystal-predict.system-off {
-  background: rgba(51, 65, 85, 0.1) !important;
-  border: 1px solid #334155 !important; 
-  color: #475569 !important; 
-  box-shadow: none !important; 
-  cursor: not-allowed; 
-  filter: grayscale(1);
-}
-
-.btn-crystal-predict:not(.system-off):hover {
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
-  transform: translateY(-2px);
-}*/
 
 .btn-crystal-predict {
   width: 100%;
-  margin-top: 2rem;
-  padding: 1rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
   border: 1px solid rgba(34, 211, 238, 0.3);
   border-radius: 12px;
   background: rgba(15, 23, 42, 0.8); 
@@ -494,12 +479,11 @@ color: #020617;
   height: 12px;
 }
 
-/* Reutilizando tu scroll personalizado */
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(0, 206, 209, 0.3); /* Un cyan suave */
+  background: rgba(0, 206, 209, 0.3); 
   border-radius: 10px;
 }
 
@@ -507,7 +491,6 @@ color: #020617;
   background: rgba(0, 206, 209, 0.8);
 }
 
-/* Animación para las filas nuevas */
 tbody tr {
   animation: slideInRow 0.4s ease-out forwards;
 }

@@ -339,7 +339,6 @@
   pointer-events: none;
 }
 
-/* El pequeño sensor que "intenta abrirse" con un pulso constante */
 .disclaimer-anchor {
   position: fixed;
   bottom: 30px;
@@ -365,7 +364,6 @@
   box-shadow: 0 0 15px #06b6d4;
 }
 
-/* Animación de pulso para indicar que hay algo ahí */
 .pulse-ring {
   position: absolute;
   width: 40px;
@@ -387,7 +385,6 @@
   text-shadow: 0 0 5px #06b6d4;
 }
 
-/* El Modal Holográfico */
 .hologram-overlay {
   position: fixed;
   inset: 0;
@@ -418,7 +415,6 @@
   line-height: 1.6;
 }
 
-/* Efecto de parpadeo de línea superior */
 .hologram-card::before {
   content: "";
   position: absolute;
@@ -431,4 +427,14 @@
 @keyframes scanline {
   0% { top: 0%; }
   100% { top: 100%; opacity: 0; }
+}
+
+@media (max-width: 450px) {
+  .main-title {
+    font-size: 1.5rem;
+  }
+
+  .tagline {
+    font-size: 1rem;
+  }
 }
